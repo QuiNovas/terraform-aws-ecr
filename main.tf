@@ -7,7 +7,7 @@ data "aws_caller_identity" "current" {
 
 data "aws_iam_policy_document" "repo" {
   statement {
-    actions = flatten([
+    actions = [
       "ecr:BatchCheckLayerAvailability",
       "ecr:BatchGetImage",
       "ecr:DescribeImages",
@@ -16,12 +16,12 @@ data "aws_iam_policy_document" "repo" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:GetRepositoryPolicy",
       "ecr:ListImages",
-    ])
+    ]
     principals {
-      identifiers = [
+      identifiers = flatten([
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
         var.cross_account_users,
-      ]
+      ])
       type = "AWS"
     }
     sid = "AllowCrossAccountAccess"
