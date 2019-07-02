@@ -7,7 +7,7 @@ data "aws_caller_identity" "current" {
 
 data "aws_iam_policy_document" "repo" {
   statement {
-    actions = [
+    actions = flatten([
       "ecr:BatchCheckLayerAvailability",
       "ecr:BatchGetImage",
       "ecr:DescribeImages",
@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "repo" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:GetRepositoryPolicy",
       "ecr:ListImages",
-    ]
+    ])
     principals {
       identifiers = [
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
