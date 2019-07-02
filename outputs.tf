@@ -1,14 +1,15 @@
 output "arn" {
   description = "Full ARN of the repository."
-  value       = "${aws_ecr_repository.repo.arn}"
+  value       = aws_ecr_repository.repo.arn
 }
 
 output "registry_id" {
   description = "The registry ID where the repository was created."
-  value       = "${aws_ecr_repository.repo.registry_id}"
+  value       = aws_ecr_repository.repo.registry_id
 }
 
 output "repository_url" {
   description = "The URL of the repository (in the form aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName)"
-  value       = "${aws_ecr_repository.repo.repository_url}"
+  value       = aws_ecr_repository.repo.repository_url
 }
+
